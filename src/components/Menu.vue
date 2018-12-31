@@ -11,7 +11,6 @@
 
 <script>
 import MainItems from "./MainItems.vue";
-
 export default {
   name: "Menu",
   components: {
@@ -92,7 +91,6 @@ export default {
           });
         }
       });
-
       return (this.submenu = newArray);
     },
     isActive() {

@@ -6,7 +6,9 @@
     <EachMainItem 
     :key="option.id" 
     :option="option"
-    :showAndActive="showAndActive">
+    :active="active"
+    :showAndActive="showAndActive"
+    :submenu="submenu">
     </EachMainItem>
     </li>
    </ul>

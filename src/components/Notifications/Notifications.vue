@@ -1,19 +1,19 @@
 <template>
 <div class="content-notification">
-  <header-notifications/>
-  <body-notifications 
+  <notifications-header/>
+  <notifications-body
   :notifications="notifications"/>
 </div>
 </template>
 
 <script>
-import HeaderNotifications from "../Notifications/HeaderNotification.vue";
-import BodyNotifications from "../Notifications/BodyNotifications"
+import NotificationsHeader from "../Notifications/NotificationsHeader.vue";
+import NotificationsBody from "../Notifications/NotificationsBody.vue"
 export default {
     name: "Notifications",
     components: {
-        HeaderNotifications: HeaderNotifications,
-        BodyNotifications: BodyNotifications
+        NotificationsHeader: NotificationsHeader,
+        NotificationsBody: NotificationsBody
     },
     data() {
       return{
@@ -41,9 +41,7 @@ export default {
          subject: 'Se rechazó el cambio de información de 3 productos',
          request: 'solicitado por Armando',
          status:
-             {statusMessage:'Autorizado', icon:'far fa-check-circle', name:'Pedro Pardo'},
-             
-             
+             {statusMessage:'Autorizado', icon:'far fa-check-circle', name:'Pedro Pardo'}
         }, 
       }
     ]

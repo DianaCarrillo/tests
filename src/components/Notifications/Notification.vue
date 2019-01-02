@@ -1,7 +1,5 @@
 <template>
 <div> 
-  <div v-for="notification in notifications" 
-  :key="notification.id">
   <div :class="notification.seen">
    <div class="icon gx-user">
      <p>{{notification.icon}}</p>
@@ -10,12 +8,11 @@
      <p><strong>{{notification.message.subject}}</strong></p>
      <p>{{notification.message.request}}</p>
      <accept-reject-btn/>
-     <request-status :notification="notifications"/>
+     <request-status :notification="notification"/>
      <p class="timestamp">{{notification.date}}</p>
    </div>
    </div>
-   </div>
- </div>
+  </div>
 </template>
 
 <script>
@@ -29,7 +26,7 @@ export default {
       RequestStatus: RequestStatus
     },
     props: {
-      notifications: Array
+      notification: Array
     }
 
 }

@@ -1,8 +1,12 @@
 <template>
  <div>
-  <div class="day-activities">
+  <div class="day-activities"  v-for="info in historicalInfo " :key="info.id" >
    <ul>
-    <HistoricalDay :historicalInfo="historicalInfo" />
+     <li class="day">
+      <p>{{info.date}}</p>
+    </li>
+    <historical-day
+      :info="info"/>  
    </ul>
  </div>
 </div>
@@ -10,7 +14,6 @@
 
 <script>
 import HistoricalDay from "../Historical/HistoricalDay.vue";
-
 export default {
     name: "HistoricalBody",
     components: {

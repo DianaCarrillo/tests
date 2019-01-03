@@ -1,18 +1,21 @@
 <template>
  <div>
-     <div v-for="activity in info.activities" :key="activity.id">
-       <Eachactivity 
+   <li class="day">
+      <p>{{info.date}}</p>
+    </li>
+    <div v-for="activity in info.activities" :key="activity.id">
+       <activity 
        :activity="activity" />
      </div>
  </div>
 </template>
 
 <script>
-import Eachactivity from "../Historical/EachActivity.vue"
+import Activity from "../Historical/Activity.vue"
 export default {
   name: "HistoricalDay",
   components:{
-    Eachactivity: Eachactivity
+    Activity: Activity
   },
   props: {
       info: Object,

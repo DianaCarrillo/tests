@@ -1,6 +1,6 @@
 <template>
 <div class="historical in-side">
-    <historical-title/>
+    <HistoricalTitle/>
     <historical-body 
     :historicalInfo="historicalInfo"/>
     <historical-footer/>

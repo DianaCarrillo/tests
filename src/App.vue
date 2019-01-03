@@ -9,9 +9,9 @@
 </template>
 
 <script>
-// import SomeComponent from "./components/SomeComponent.vue";
-// import SearchInput from "./components/SearchInput.vue";
-// import SideBar from "./components/SideBar.vue";
+// import SomeComponent from "./components/SideBar/SomeComponent.vue";
+// import SearchInput from "./components/SideBar/SearchInput.vue";
+// import SideBar from "./components/SideBar/SideBar.vue";
 import Historical from "./components/Historical/Historical.vue";
 import Notifications from "./components/Notifications/Notifications.vue";
 export default {

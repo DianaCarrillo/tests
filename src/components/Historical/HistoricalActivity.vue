@@ -11,15 +11,13 @@
 
 <script>
 export default {
-    name: "EachActivity",
+    name: "HistoricalActivity",
     props: {
-        activity: Object
+        activity: { 
+        type: Object,
+        required:true
+        }
     }
 }
 </script>
 
-<style>
- .time{
-     left: 300px;
- }
-</style>

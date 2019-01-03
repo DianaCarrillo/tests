@@ -20,7 +20,10 @@ export default {
      HistoricalDay: HistoricalDay
     },
     props: {
-      historicalInfo: Array
+      historicalInfo: {
+        type: Array,
+        required:true   
     }
+}
 }
 </script>

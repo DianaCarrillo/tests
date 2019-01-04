@@ -14,7 +14,7 @@ import HistoricalBody from "../Historical/HistoricalBody.vue";
 export default {
   name: "Historical",
   components: {
-    HistoticalTitle: HistoricalTitle,
+    HistoricalTitle: HistoricalTitle,
     HistoricalFooter: HistoricalFooter,
     HistoricalBody: HistoricalBody
   },

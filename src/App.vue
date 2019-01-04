@@ -19,7 +19,7 @@ export default {
   components: {
     // SomeComponent,
     // SearchInput,
-    // SideBar, 
+    // SideBar,
     Historical,
     Notifications
   }

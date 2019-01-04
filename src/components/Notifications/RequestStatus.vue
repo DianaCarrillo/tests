@@ -10,7 +10,10 @@
 export default {
     name: "RequestStatus",
     props: {
-      notification: Object
+      notification:{
+          type: Object,
+          required: true
+      } 
     }
 }
 </script>

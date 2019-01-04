@@ -19,7 +19,10 @@
 export default {
   name: "SomeComponent",
   props: {
-    msg: String
+    msg: {
+      type: String,
+      required: true
+    }
   }
 };
 // the value inside obj props is Type

@@ -17,7 +17,10 @@ export default {
       Notification: Notification
     },
     props: {
-      notifications: Array
+      notifications: {
+        type: Array,
+        required: true
+      } 
     }
 }
 </script>

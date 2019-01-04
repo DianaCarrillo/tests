@@ -26,7 +26,10 @@ export default {
       RequestStatus: RequestStatus
     },
     props: {
-      notification: Array
+      notification: {
+        type: Array,
+        required: true
+      }
     }
 
 }

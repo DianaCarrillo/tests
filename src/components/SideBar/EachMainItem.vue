@@ -21,7 +21,10 @@ components: {
     Submenu: Submenu
 },
  props: {
-     option: Object, 
+     option: {
+       type: Object, 
+       required: true
+     },
      showAndActive: {
       type: Function,
       required: true

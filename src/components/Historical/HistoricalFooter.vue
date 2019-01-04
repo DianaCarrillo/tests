@@ -1,6 +1,6 @@
  <template>
  <div> 
-    <a href="#">Minimizar historial</a>
+    <a class="historical-footer" href="#">Minimizar historial</a>
  </div>
  </template>
  

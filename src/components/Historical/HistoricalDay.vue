@@ -18,7 +18,10 @@ export default {
     Activity: Activity
   },
   props: {
-      info: Object,
+      info: {
+        type: Object,
+        required: true
+      }
     }
 }
 </script>

@@ -2,26 +2,22 @@
   <div id="app">
     <SomeComponent msg="Welcome to Your Vue.js App"/>
     <SearchInput/>
-    <!-- <SideBar/> -->
+    <BranchPicker/>
     <Historical/>
     <Notifications/>
   </div>
 </template>
 
 <script>
-// import SomeComponent from "./components/SideBar/SomeComponent.vue";
-// import SearchInput from "./components/SideBar/SearchInput.vue";
-// import SideBar from "./components/SideBar/SideBar.vue";
+import BranchPicker from "./components/BranchPicker.vue";
 import Historical from "./components/Historical/Historical.vue";
 import Notifications from "./components/Notifications/Notifications.vue";
 export default {
   name: "app",
   components: {
-    // SomeComponent,
-    // SearchInput,
-    // SideBar,
     Historical,
-    Notifications
+    Notifications,
+    BranchPicker
   }
 };
 </script>

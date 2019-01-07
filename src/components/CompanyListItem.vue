@@ -3,7 +3,7 @@
     <button class="select-item" :class="{ active: company.active }">
       <div class="info">
         <p>
-          {{ company.name }} <span class="on"></span>
+          {{ company.name }} <span  class="on"></span>
           <span>{{ company.taxId }}</span>
         </p>
       </div>

@@ -8,7 +8,7 @@ import {
 } from "dom-testing-library";
 
 import BranchPicker from "../BranchPicker.vue";
-import CompanyListItem from "../CompanyListItem.vue";
+// import CompanyListItem from "../CompanyListItem.vue";
 
 function render(component, options) {
   const localVue = createLocalVue();
@@ -58,7 +58,7 @@ describe("BranchPicker", () => {
     expect(secondTrueCount).toEqual(1);
   });
   it("it highlights the currently selected item", async () => {
-    const { getByText, wrapper, debug } = render(BranchPicker);
+    const { getByText, wrapper } = render(BranchPicker);
 
     const item2Name = wrapper.vm.companies[1].name;
     const item3Name = wrapper.vm.companies[2].name;

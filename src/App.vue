@@ -1,22 +1,15 @@
 <template>
   <div id="app">
-    <SomeComponent msg="Welcome to Your Vue.js App"/>
-    <SearchInput/>
+    <!-- <SomeComponent msg="Welcome to Your Vue.js App"/> -->
     <BranchPicker/>
-    <Historical/>
-    <Notifications/>
   </div>
 </template>
 
 <script>
 import BranchPicker from "./components/BranchPicker.vue";
-import Historical from "./components/Historical/Historical.vue";
-import Notifications from "./components/Notifications/Notifications.vue";
 export default {
   name: "app",
   components: {
-    Historical,
-    Notifications,
     BranchPicker
   }
 };

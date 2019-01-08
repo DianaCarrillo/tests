@@ -78,6 +78,4 @@ describe("BranchPicker", () => {
     const activeItem2 = wrapper.find(".active");
     expect(activeItem2.text()).toContain("Beta");
   });
-
-  it("has ");
 });

@@ -1,10 +1,12 @@
 <template>
-  <div class="item" @click="handleCompanySelect(company.taxId)">
-    <button class="select-item" :class="{ active: company.active }">
+  <div class="item" disabled @click="handleCompanySelect(company.taxId)">
+    <button class="select-item">
       <div class="info">
         <p>
-          {{ company.name }} <span  class="on"></span>
-          <span>{{ company.taxId }}</span>
+          {{ company.name }}
+          <span :class="{ 'on' :company.active}"></span>
+          <i :class="{'fas fa-lock':!company.active}"></i>
+          <span>RFC: {{ company.taxId }}</span>
         </p>
       </div>
     </button>
@@ -12,6 +14,7 @@
 </template>
 <script>
 export default {
+  name: "CompanyListItem",
   props: {
     company: {
       type: Object,
@@ -21,7 +24,6 @@ export default {
       type: Function,
       required: true
     }
-  },
-  name: "CompanyListItem"
+  }
 };
 </script>

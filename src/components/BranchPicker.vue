@@ -4,16 +4,18 @@
       <a href="#">&lt; Regresar</a>
     </div>
     <div class="columns">
-      <CompanyList :companies="companies" :handle-company-select="handleCompanySelect"/>
-      <StorePicker/>
-      <!-- <StoreLocation/> -->
+      <CompanyList
+        :companies="companies"
+        :companiesFromServer="companiesFromServer"
+        :handle-company-select="handleCompanySelect"
+      />
+      <StorePicker :companies="companies"/>
     </div>
   </div>
 </template>
 <script>
 import CompanyList from "./CompanyList.vue";
 import StorePicker from "./StorePicker.vue";
-import StoreLocation from "./StoreLocation.vue";
 
 export default {
   name: "SomeComponent",
@@ -21,16 +23,16 @@ export default {
     return {
       companiesFromServer: [
         {
-          name: "Alpha",
+          name: "Empresa Alpha ",
           taxId: "1234567890",
+          active: true,
           branches: [
-          {
-          warehouses: [
             {
               id: 11,
               name: "Almacén de la Ciudad de México y EDOMEX",
               key: "12408416",
               active: true,
+              icon: "icon warehouses",
               locations: [
                 {
                   address: "Montevideo",
@@ -69,14 +71,13 @@ export default {
                   active: true
                 }
               ]
-            }
-          ],
-          offices: [
+            },
             {
               id: 21,
               name: "Oficinas Sureste",
               key: "12408416",
               active: true,
+              icon: "icon offices",
               locations: [
                 {
                   name: "Indios Vallejo",
@@ -123,14 +124,13 @@ export default {
                   active: true
                 }
               ]
-            }
-          ],
-          stores: [
+            },
             {
               id: 31,
               name: "Tienda Mixcoac",
               key: "34657890",
               active: true,
+              icon: "icon stores",
               locations: [
                 {
                   name: "Guanajuato",
@@ -179,19 +179,20 @@ export default {
               ]
             }
           ]
-        }
-      ]
         },
         {
-          name: "Beta",
-          taxId: "sdfghjkiuh"
+          name: "Empresa no patito S.A de C.V",
+          taxId: "sdfghjkiuh",
+          active: false
         },
         {
-          name: "Gamma",
-          taxId: "jhsadf98ad"
+          name: "Almacén Sonora Grill ",
+          taxId: "jhsadf98ad",
+          active: true
         }
       ],
-      activeCompanyTaxId: "1234567890"
+      activeCompanyTaxId: "1234567890",
+      branchesList: []
     };
   },
   computed: {
@@ -210,12 +211,13 @@ export default {
   methods: {
     handleCompanySelect(taxId) {
       this.activeCompanyTaxId = taxId;
+      // this.branchesList = companiesFromServer.branches;
+      // si this.activeCompanyTaxId es true, renderee storepicker
     }
   },
   components: {
     CompanyList,
-    StorePicker,
-    StoreLocation
+    StorePicker
   }
 };
 </script>

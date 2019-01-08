@@ -5,7 +5,7 @@
       <h4>Empresas</h4>
     </div>
     <CompanyListItem
-      v-for="company in companies"
+      v-for="company in companiesFromServer"
       :company="company"
       :handle-company-select="handleCompanySelect"
       :key="company.taxId"
@@ -18,12 +18,16 @@ import CompanyListItem from "./CompanyListItem";
 export default {
   name: "CompanyList",
   props: {
-    companies: {
-      type: Array,
-      required: true
-    },
+    // companies: {
+    //   type: Array,
+    //   required: true
+    // },
     handleCompanySelect: {
       type: Function,
+      required: true
+    },
+    companiesFromServer: {
+      type: Array,
       required: true
     }
   },

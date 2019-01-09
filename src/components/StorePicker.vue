@@ -4,32 +4,37 @@
       <div class="icon warehouses"></div>
       <h4>Almacenes</h4>
     </div>
-    <BranchesList :companies="companies"/>
-    <hr>
+    <BranchesListItem for :companiesFromServer="companiesFromServer"/>
     <div class="select-title">
-      <div class="icon offices"></div>
+      <div class="icon warehouses"></div>
       <h4>Oficinas</h4>
     </div>
-    <BranchesList :companies="companies"/>
-    <hr>
+    <BranchesListItem :companiesFromServer="companiesFromServer"/>
     <div class="select-title">
-      <div class="icon stores"></div>
+      <div class="icon warehouses"></div>
       <h4>Tiendas</h4>
     </div>
-    <BranchesList :companies="companies"/>
+    <BranchesListItem :companiesFromServer="companiesFromServer"/>
   </div>
 </template>
 <script>
-import BranchesList from "./BranchesList.vue";
+// import BranchesListItem from "./BranchesListItem.vue";
+import BranchesListItem from "./BranchesListItem.vue";
+
 export default {
   name: "StorePicker",
   components: {
-    BranchesList
+    BranchesListItem
   },
   props: {
-    companies: {
+    companiesFromServer: {
       type: Array,
       required: true
+    }
+  },
+  computed: {
+    filterBranch: function() {
+      return this.companiesFromServer[0].branches;
     }
   }
 };

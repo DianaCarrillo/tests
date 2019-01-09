@@ -1,20 +1,33 @@
- <template>
-  <div class="item">
-    <button class="select-item" v-for="company in companies" :key="company.id">
-      <div class="info" v-for="branch in company.branches" :key="branch.id">
-        <p>
-          {{branch.name}}
-          <span>Clave: 12408416</span>
-        </p>
-      </div>
-    </button>
+<template>
+  <!-- <div class="column branches is-half is-hidden"> -->
+  <div class="column" style="border: 2px solid blue;">
+    <div class="select-title">
+      <div class="icon warehouses"></div>
+      <h4>Almacenes</h4>
+      <BranchesListItem :companiesFromServer="companiesFromServer"/>
+    </div>
+    <div class="select-title">
+      <div class="icon warehouses"></div>
+      <h4>Oficinas</h4>
+      <BranchesListItem :companiesFromServer="companiesFromServer"/>
+    </div>
+    <div class="select-title">
+      <div class="icon warehouses"></div>
+      <h4>Tiendas</h4>
+      <BranchesListItem :companiesFromServer="companiesFromServer"/>
+    </div>
+    <!-- </div> -->
   </div>
 </template>
 <script>
+import BranchesListItem from "./BranchesListItem.vue";
 export default {
   name: "BranchesList",
+  components: {
+    BranchesListItem
+  },
   props: {
-    companies: {
+    companiesFromServer: {
       type: Array,
       required: true
     }

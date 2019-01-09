@@ -1,5 +1,5 @@
 <template>
-  <div class="item" disabled @click="handleCompanySelect(company.taxId)">
+  <div class="item" @click="handleCompanySelect(company.taxId)">
     <button class="select-item">
       <div class="info">
         <p>
@@ -8,6 +8,20 @@
           <i :class="{'fas fa-lock':!company.active}"></i>
           <span>RFC: {{ company.taxId }}</span>
         </p>
+      </div>
+      <div v-if="!company.active" class="popover_wrapper">
+        <a class="fas fa-question-circle"></a>
+        <div class="push popover_content up">
+          <p class="popover_message">
+            No tienes
+            <strong>permiso</strong> para modificar esta empresa.
+          </p>
+          <p class="popover_message">
+            <span>Solicítalo</span>
+            <a class="requestbranch" href="#">aquí</a>
+            <span>.</span>
+          </p>
+        </div>
       </div>
     </button>
   </div>

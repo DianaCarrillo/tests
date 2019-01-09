@@ -18,10 +18,6 @@ import CompanyListItem from "./CompanyListItem";
 export default {
   name: "CompanyList",
   props: {
-    // companies: {
-    //   type: Array,
-    //   required: true
-    // },
     handleCompanySelect: {
       type: Function,
       required: true

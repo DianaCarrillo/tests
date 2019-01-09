@@ -5,11 +5,10 @@
     </div>
     <div class="columns">
       <CompanyList
-        :companies="companies"
         :companiesFromServer="companiesFromServer"
         :handle-company-select="handleCompanySelect"
       />
-      <StorePicker :companies="companies"/>
+      <StorePicker :companiesFromServer="companiesFromServer"/>
     </div>
   </div>
 </template>
@@ -28,10 +27,12 @@ export default {
           active: true,
           branches: [
             {
-              id: 11,
+              // Almacenes: [
+              // {
               name: "Almacén de la Ciudad de México y EDOMEX",
               key: "12408416",
               active: true,
+              type: "Almacén",
               icon: "icon warehouses",
               locations: [
                 {
@@ -47,10 +48,10 @@ export default {
               ]
             },
             {
-              id: 12,
               name: "Almacén Sonora Grill",
               key: "90078434",
               active: false,
+              type: "Almacén",
               locations: [
                 {
                   name: "Aragón",
@@ -60,10 +61,10 @@ export default {
               ]
             },
             {
-              id: 13,
               name: "Almacén ASFSDFAD",
               key: "12408416",
               active: true,
+              type: "Almacén",
               locations: [
                 {
                   name: "Indios Verdes",
@@ -71,12 +72,16 @@ export default {
                   active: true
                 }
               ]
+              // }
+              // ]
             },
             {
-              id: 21,
+              // Oficinas: [
+              // {
               name: "Oficinas Sureste",
               key: "12408416",
               active: true,
+              type: "Oficinas",
               icon: "icon offices",
               locations: [
                 {
@@ -87,10 +92,10 @@ export default {
               ]
             },
             {
-              id: 22,
               name: "Oficinas Pueblos de Santa Fe",
               key: "90078434",
               active: false,
+              type: "Oficinas",
               locations: [
                 {
                   name: "Mazatlán",
@@ -100,10 +105,10 @@ export default {
               ]
             },
             {
-              id: 23,
               name: "Oficinas Puerto Madero",
               key: "34567895",
               active: true,
+              type: "Oficinas",
               locations: [
                 {
                   name: "Indios Riío Nazas",
@@ -113,10 +118,10 @@ export default {
               ]
             },
             {
-              id: 24,
               name: "Oficinas Río Amazonas",
               key: "98324534",
               active: true,
+              type: "Oficinas",
               locations: [
                 {
                   name: "Chilpancingo",
@@ -124,12 +129,16 @@ export default {
                   active: true
                 }
               ]
+              // }
+              // ]
             },
             {
-              id: 31,
+              // Tiendas: [
+              // {
               name: "Tienda Mixcoac",
               key: "34657890",
               active: true,
+              type: "Tiendas",
               icon: "icon stores",
               locations: [
                 {
@@ -140,10 +149,10 @@ export default {
               ]
             },
             {
-              id: 32,
               name: "Tienda centralizada Cancún A",
               key: "32344456",
               active: false,
+              type: "Tiendas",
               locations: [
                 {
                   name: "Morelos",
@@ -153,9 +162,9 @@ export default {
               ]
             },
             {
-              id: 33,
               name: "Tienda condesa",
               key: "25678965",
+              type: "Tiendas",
               active: true,
               locations: [
                 {
@@ -166,10 +175,10 @@ export default {
               ]
             },
             {
-              id: 34,
               name: "Tienda metro chilpancingo",
               key: "25670005",
               active: true,
+              type: "Tiendas",
               locations: [
                 {
                   name: "Nuevo León",
@@ -177,6 +186,8 @@ export default {
                   active: true
                 }
               ]
+              // }
+              // ]
             }
           ]
         },
@@ -194,19 +205,6 @@ export default {
       activeCompanyTaxId: "1234567890",
       branchesList: []
     };
-  },
-  computed: {
-    activeCompany() {
-      return this.companiesFromServer[0];
-    },
-    companies() {
-      return this.companiesFromServer.map(company => {
-        return {
-          ...company,
-          ...{ active: company.taxId === this.activeCompanyTaxId }
-        };
-      });
-    }
   },
   methods: {
     handleCompanySelect(taxId) {

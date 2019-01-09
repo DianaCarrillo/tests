@@ -1,15 +1,15 @@
  <template>
   <div class="item">
-    <button class="select-item">
+    <button class="select-item" :disabled="!disabled">
       <div class="info">
         <p>
           {{branch.name}}
           <span :class="{'on': branch.active}"></span>
-          <i :class="{'fas fa-lock':!branch.active}"></i>         
-          <span> RFC: {{branch.key}}</span>
+          <i :class="{'fas fa-lock':!branch.active}"></i>
+          <span>RFC: {{branch.key}}</span>
         </p>
-        </div>
-        <div v-if="!branch.active" class="popover_wrapper">
+      </div>
+      <div v-if="!branch.active" class="popover_wrapper">
         <a class="fas fa-question-circle"></a>
         <div class="push popover_content up">
           <p class="popover_message">
@@ -21,7 +21,7 @@
             <a class="requestbranch" href="#">aquí</a>
             <span>.</span>
           </p>
-      </div>
+        </div>
       </div>
     </button>
   </div>
@@ -33,6 +33,15 @@ export default {
     branch: {
       type: Object,
       required: true
+    },
+    disabled: {
+      type: Boolean,
+      required: true
+    }
+  },
+  mounted() {
+    if (this.branch.active) {
+      this.disabled = !this.disabled;
     }
   }
 };

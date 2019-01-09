@@ -9,7 +9,11 @@
         :handle-company-select="handleCompanySelect"
         :disabled="disabled"
       />
-      <StorePicker :companiesFromServer="companiesFromServer" :isHidden="isHidden"/>
+      <StorePicker
+        :companiesFromServer="companiesFromServer"
+        :isHidden="isHidden"
+        :disabled="disabled"
+      />
     </div>
   </div>
 </template>
@@ -192,7 +196,7 @@ export default {
         }
       ],
       isHidden: true,
-      disabled: true
+      disabled: false
     };
   },
   methods: {

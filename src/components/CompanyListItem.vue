@@ -42,6 +42,11 @@ export default {
       type: Boolean,
       required: true
     }
+  },
+  mounted() {
+    if (this.company.active) {
+      this.disabled = !this.disabled;
+    }
   }
 };
 </script>

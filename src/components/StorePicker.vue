@@ -4,19 +4,35 @@
       <div class="icon warehouses"></div>
       <h4>Almacenes</h4>
     </div>
-    <BranchesListItem v-for="branch in filterWarehouse" s :key="branch.id" :branch="branch"/>
+    <BranchesListItem
+      v-for="branch in filterWarehouse"
+      s
+      :key="branch.id"
+      :branch="branch"
+      :disabled="disabled"
+    />
     <hr>
     <div class="select-title">
       <div class="icon offices"></div>
       <h4>Oficinas</h4>
     </div>
-    <BranchesListItem v-for="branch in filterOffices" :key="branch.id" :branch="branch"/>
+    <BranchesListItem
+      v-for="branch in filterOffices"
+      :key="branch.id"
+      :branch="branch"
+      :disabled="disabled"
+    />
     <hr>
     <div class="select-title">
       <div class="icon stores"></div>
       <h4>Tiendas</h4>
     </div>
-    <BranchesListItem v-for="branch in filterStores" :key="branch.id" :branch="branch"/>
+    <BranchesListItem
+      v-for="branch in filterStores"
+      :key="branch.id"
+      :branch="branch"
+      :disabled="disabled"
+    />
   </div>
 </template>
 <script>
@@ -33,6 +49,10 @@ export default {
       required: true
     },
     isHidden: {
+      type: Boolean,
+      required: true
+    },
+    disabled: {
       type: Boolean,
       required: true
     }

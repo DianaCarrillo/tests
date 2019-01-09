@@ -1,6 +1,6 @@
  <template>
   <div class="item">
-    <button class="select-item" :disabled="!disabled">
+    <button class="select-item" :disabled="!branch.active">
       <div class="info">
         <p>
           {{branch.name}}
@@ -33,13 +33,9 @@ export default {
     branch: {
       type: Object,
       required: true
-    },
-    disabled: {
-      type: Boolean,
-      required: true
     }
   },
-  mounted() {
+  created() {
     if (this.branch.active) {
       this.disabled = !this.disabled;
     }

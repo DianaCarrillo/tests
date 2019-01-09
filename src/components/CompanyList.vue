@@ -9,7 +9,6 @@
       :company="company"
       :handle-company-select="handleCompanySelect"
       :key="company.taxId"
-      :disabled="disabled"
     />
   </div>
 </template>
@@ -17,7 +16,6 @@
 import CompanyListItem from "./CompanyListItem";
 
 export default {
-  name: "CompanyList",
   props: {
     handleCompanySelect: {
       type: Function,
@@ -25,10 +23,6 @@ export default {
     },
     companiesFromServer: {
       type: Array,
-      required: true
-    },
-    disabled: {
-      type: Boolean,
       required: true
     }
   },

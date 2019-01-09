@@ -9,6 +9,7 @@
       :company="company"
       :handle-company-select="handleCompanySelect"
       :key="company.taxId"
+      :disabled="disabled"
     />
   </div>
 </template>
@@ -24,6 +25,10 @@ export default {
     },
     companiesFromServer: {
       type: Array,
+      required: true
+    },
+    disabled: {
+      type: Boolean,
       required: true
     }
   },

@@ -1,6 +1,6 @@
 <template>
   <div class="item" @click="handleCompanySelect(company.taxId)">
-    <button class="select-item">
+    <button class="select-item" :disabled="!disabled">
       <div class="info">
         <p>
           {{ company.name }}
@@ -36,6 +36,10 @@ export default {
     },
     handleCompanySelect: {
       type: Function,
+      required: true
+    },
+    disabled: {
+      type: Boolean,
       required: true
     }
   }

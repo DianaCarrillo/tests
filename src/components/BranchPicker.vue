@@ -7,8 +7,9 @@
       <CompanyList
         :companiesFromServer="companiesFromServer"
         :handle-company-select="handleCompanySelect"
+        :disabled="disabled"
       />
-      <StorePicker :companiesFromServer="companiesFromServer"/>
+      <StorePicker :companiesFromServer="companiesFromServer" :isHidden="isHidden"/>
     </div>
   </div>
 </template>
@@ -27,8 +28,6 @@ export default {
           active: true,
           branches: [
             {
-              // Almacenes: [
-              // {
               name: "Almacén de la Ciudad de México y EDOMEX",
               key: "12408416",
               active: true,
@@ -72,12 +71,8 @@ export default {
                   active: true
                 }
               ]
-              // }
-              // ]
             },
             {
-              // Oficinas: [
-              // {
               name: "Oficinas Sureste",
               key: "12408416",
               active: true,
@@ -129,12 +124,8 @@ export default {
                   active: true
                 }
               ]
-              // }
-              // ]
             },
             {
-              // Tiendas: [
-              // {
               name: "Tienda Mixcoac",
               key: "34657890",
               active: true,
@@ -186,8 +177,6 @@ export default {
                   active: true
                 }
               ]
-              // }
-              // ]
             }
           ]
         },
@@ -202,15 +191,15 @@ export default {
           active: true
         }
       ],
-      activeCompanyTaxId: "1234567890",
-      branchesList: []
+      isHidden: true,
+      disabled: true
     };
   },
   methods: {
-    handleCompanySelect(taxId) {
-      this.activeCompanyTaxId = taxId;
-      // this.branchesList = companiesFromServer.branches;
-      // si this.activeCompanyTaxId es true, renderee storepicker
+    handleCompanySelect(id) {
+      if (id === "1234567890") {
+        return (this.isHidden = !this.isHidden);
+      }
     }
   },
   components: {

@@ -1,5 +1,5 @@
 <template>
-  <div class="column" style="border: 2px solid blue;">
+  <div class="column companies is-half " :class="{'is-hidden': !isHidden}" >
     <div class="select-title">
       <div class="icon warehouses"></div>
       <h4>Almacenes</h4>

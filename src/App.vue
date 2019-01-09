@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import SelectBranch from "./components/SelectBranch.vue";
+import SelectBranch from "./components/Diana/SelectBranch.vue";
 export default {
   name: "app",
   components: {

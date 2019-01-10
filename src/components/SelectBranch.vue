@@ -22,7 +22,7 @@ export default {
     return {
       companiesFromServer: [
         {
-          name: "Empresa Alpha ",
+          name: "Empresa no patito Empresa no patito Empresa no patito ",
           taxId: "1234567890",
           active: true,
           branches: [

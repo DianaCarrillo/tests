@@ -191,8 +191,7 @@ export default {
           active: true
         }
       ],
-      activeCompanyTaxId: "1234567890",
-      branchesList: []
+      activeCompanyTaxId: "1234567890"
     };
   },
   computed: {

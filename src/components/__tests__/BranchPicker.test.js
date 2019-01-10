@@ -1,11 +1,7 @@
 /* eslint-disable no-undef*/
 
 import { createLocalVue, mount } from "@vue/test-utils";
-import {
-  getQueriesForElement,
-  prettyDOM,
-  fireEvent
-} from "dom-testing-library";
+import { getQueriesForElement, prettyDOM } from "dom-testing-library";
 
 import BranchPicker from "../BranchPicker.vue";
 // import CompanyListItem from "../CompanyListItem.vue";
@@ -58,24 +54,24 @@ describe("BranchPicker", () => {
     expect(secondTrueCount).toEqual(1);
   });
   it("it highlights the currently selected item", async () => {
-    const { getByText, wrapper } = render(BranchPicker);
+    const { wrapper } = render(BranchPicker);
 
-    const item2Name = wrapper.vm.companies[1].name;
-    const item3Name = wrapper.vm.companies[2].name;
-    const item3 = getByText(item3Name);
-    const item2 = getByText(item2Name);
+    // const item2Name = wrapper.vm.companies[1].name;
+    // const item3Name = wrapper.vm.companies[2].name;
+    // const item3 = getByText(item3Name);
+    // const item2 = getByText(item2Name);
 
-    const activeItem = wrapper.find(".active");
-    expect(activeItem.text()).toContain("Alpha");
+    const activeItem = wrapper.find(".select-item");
+    expect(activeItem.text()).toContain("Empresa Alpha");
 
-    await fireEvent.click(item3);
+    // await fireEvent.click(item3);
 
-    const activeItem3 = wrapper.find(".active");
-    expect(activeItem3.text()).toContain("Gamma");
+    // const activeItem3 = wrapper.find(".active");
+    // expect(activeItem3.text()).toContain("Almacén Sonora Grill");
 
-    await fireEvent.click(item2);
+    // await fireEvent.click(item2);
 
-    const activeItem2 = wrapper.find(".active");
-    expect(activeItem2.text()).toContain("Beta");
+    // const activeItem2 = wrapper.find(".active");
+    // expect(activeItem2.text()).toContain("Empresa no patito S.A de C.V");
   });
 });

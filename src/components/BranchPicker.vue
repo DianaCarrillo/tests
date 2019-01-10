@@ -25,7 +25,6 @@ export default {
         {
           name: "Empresa Alpha ",
           taxId: "1234567890",
-          active: true,
           branches: [
             {
               id: 11,
@@ -182,13 +181,11 @@ export default {
         },
         {
           name: "Empresa no patito S.A de C.V",
-          taxId: "sdfghjkiuh",
-          active: false
+          taxId: "sdfghjkiuh"
         },
         {
           name: "Almacén Sonora Grill ",
-          taxId: "jhsadf98ad",
-          active: true
+          taxId: "jhsadf98ad"
         }
       ],
       activeCompanyTaxId: "1234567890"

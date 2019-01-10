@@ -1,7 +1,11 @@
 /* eslint-disable no-undef*/
 
 import { createLocalVue, mount } from "@vue/test-utils";
-import { getQueriesForElement, prettyDOM } from "dom-testing-library";
+import {
+  getQueriesForElement,
+  prettyDOM
+  // fireEvent
+} from "dom-testing-library";
 
 import BranchPicker from "../BranchPicker.vue";
 // import CompanyListItem from "../CompanyListItem.vue";
@@ -66,12 +70,12 @@ describe("BranchPicker", () => {
 
     // await fireEvent.click(item3);
 
-    // const activeItem3 = wrapper.find(".active");
-    // expect(activeItem3.text()).toContain("Almacén Sonora Grill");
+    const activeItem3 = wrapper.find(".select-item");
+    expect(activeItem3.text()).toContain("Empresa no patito S.A de C.V");
 
     // await fireEvent.click(item2);
 
     // const activeItem2 = wrapper.find(".active");
-    // expect(activeItem2.text()).toContain("Empresa no patito S.A de C.V");
+    // expect(activeItem2.text()).toContain("Beta");
   });
 });

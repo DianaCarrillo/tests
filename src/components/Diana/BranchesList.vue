@@ -23,7 +23,7 @@
 import BranchesListItem from "./BranchesListItem.vue";
 
 export default {
-  name: "StorePicker",
+  name: "BranchList",
   components: {
     BranchesListItem
   },

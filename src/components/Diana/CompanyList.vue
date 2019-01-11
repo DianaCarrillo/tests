@@ -18,6 +18,7 @@
 import CompanyListItem from "./CompanyListItem";
 
 export default {
+  name: "CompanyList",
   props: {
     handleCompanySelect: {
       type: Function,

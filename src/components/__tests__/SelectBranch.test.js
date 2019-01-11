@@ -54,7 +54,7 @@ describe("SelectBranch", () => {
 });
 
 describe("BranchesList", () => {
-  it("It renders braches column correctly", async () => {
+  it("Contains hides the BranchList component", async () => {
     const { wrapper } = render(BranchesList, {
       propsData: {
         isHidden: true,

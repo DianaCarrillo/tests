@@ -19,7 +19,7 @@ import CompanyList from "./CompanyList.vue";
 import BranchesList from "./BranchesList.vue";
 
 export default {
-  name: "SomeComponent",
+  name: "SelectBranch",
   data() {
     return {
       companiesFromServer: [
@@ -117,10 +117,11 @@ export default {
   methods: {
     handleCompanySelect(id, active) {
       this.showBranch(id);
-      this.addActiveClass(active);
+      this.addActiveClass(active, id);
     },
-    addActiveClass(active) {
-      if (active) {
+    addActiveClass(active, id) {
+      // Lo estoy poniendo cada que handlecompanySelect se ativa, active se convierte en una class del button
+      if (active == true && id === "1234567890") {
         return (this.activeClass = !this.activeClass);
       }
     },

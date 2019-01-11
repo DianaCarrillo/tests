@@ -7,6 +7,8 @@
       <CompanyList
         :companiesFromServer="companiesFromServer"
         :handle-company-select="handleCompanySelect"
+        :addActiveClass="addActiveClass"
+        :activeClass="activeClass"
       />
       <BranchesList :companiesFromServer="companiesFromServer" :isHidden="isHidden"/>
     </div>
@@ -22,7 +24,7 @@ export default {
     return {
       companiesFromServer: [
         {
-          name: "Empresa Alpha ",
+          name: "Empresa Alpha",
           taxId: "1234567890",
           active: true,
           branches: [
@@ -103,16 +105,26 @@ export default {
           active: false
         },
         {
-          name: "Almacén Sonora Grill ",
+          name: "Almacén Sonora Grill",
           taxId: "jhsadf98ad",
           active: true
         }
       ],
-      isHidden: true
+      isHidden: true,
+      activeClass: false
     };
   },
   methods: {
-    handleCompanySelect(id) {
+    handleCompanySelect(id, active) {
+      this.showBranch(id);
+      this.addActiveClass(active);
+    },
+    addActiveClass(active) {
+      if (active) {
+        return (this.activeClass = !this.activeClass);
+      }
+    },
+    showBranch(id) {
       if (id === "1234567890") {
         return (this.isHidden = !this.isHidden);
       }

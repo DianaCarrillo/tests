@@ -1,38 +1,28 @@
 <template>
-  <div class="column companies is-half">
+  <div class="column" style="border: 2px solid red;">
     <div class="select-title">
       <div class="icon companies"></div>
       <h4>Empresas</h4>
     </div>
     <CompanyListItem
-      v-for="company in companiesFromServer"
+      v-for="company in companies"
       :company="company"
       :handle-company-select="handleCompanySelect"
       :key="company.taxId"
-      :addActiveClass="addActiveClass"
-      :activeClass="activeClass"
     />
   </div>
 </template>
 <script>
 import CompanyListItem from "./CompanyListItem";
-
 export default {
+  name: "CompanyList",
   props: {
-    handleCompanySelect: {
-      type: Function,
-      required: true
-    },
-    companiesFromServer: {
+    companies: {
       type: Array,
       required: true
     },
-    addActiveClass: {
+    handleCompanySelect: {
       type: Function,
-      required: true
-    },
-    activeClass: {
-      type: Boolean,
       required: true
     }
   },

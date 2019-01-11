@@ -1,6 +1,6 @@
 <template>
-  <div class="item" @click="handleCompanySelect(company.taxId)">
-    <button class="select-item" :disabled="!company.active">
+  <div class="item" @click="handleCompanySelect(company.taxId, company.active)">
+    <button class="select-item" :disabled="!company.active" :class="{'active':activeClass}">
       <div class="info">
         <p>
           {{ company.name }}
@@ -36,6 +36,14 @@ export default {
     },
     handleCompanySelect: {
       type: Function,
+      required: true
+    },
+    addActiveClass: {
+      type: Function,
+      required: true
+    },
+    activeClass: {
+      type: Boolean,
       required: true
     }
   }

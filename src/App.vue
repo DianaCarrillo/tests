@@ -2,15 +2,19 @@
   <div id="app">
     <!-- <SomeComponent msg="Welcome to Your Vue.js App"/> -->
     <SelectBranch/>
+    <BranchPicker/>
   </div>
 </template>
 
 <script>
 import SelectBranch from "./components/Diana/SelectBranch.vue";
+import BranchPicker from "./components/Joan/BranchPicker.vue";
+
 export default {
   name: "app",
   components: {
-    SelectBranch
+    SelectBranch,
+    BranchPicker
   }
 };
 </script>

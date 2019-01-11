@@ -3,7 +3,8 @@
 import { createLocalVue, mount } from "@vue/test-utils";
 import {
   getQueriesForElement,
-  prettyDOM
+  prettyDOM,
+  fireEvent
   // fireEvent
 } from "dom-testing-library";
 
@@ -28,7 +29,7 @@ function render(component, options) {
 }
 
 describe("SelectBranch", () => {
-  it("It always has only two active companies", () => {
+  it("It has only two active companies", () => {
     const { wrapper } = render(SelectBranch);
 
     let trueCount = 0;
@@ -78,13 +79,16 @@ describe("BranchesList", () => {
 
     const div = wrapper.findAll("div").at(0);
     expect(div.classes()).toContain("is-hidden");
-    // Cómo le hago para testear el evento click si está en otro componente
   });
-  // it("It renders braches column correctly", async () => {
-  //   const { wrapper } = render(CompanyListItem, {
-  //     propsData: {}
-  //   });
-  // });
+  it("It renders braches column correctly", async () => {
+    const { wrapper, getByText } = render(SelectBranch);
+    const company = wrapper.vm.companiesFromServer[0].name;
+    const companyName = getByText(company);
+
+    await fireEvent.click(companyName);
+    const div = wrapper.findAll("div").at(0);
+    expect(div.classes("is-hidden")).toBe(false);
+  });
 });
 
 // it("it highlights the currently selected item", async () => {

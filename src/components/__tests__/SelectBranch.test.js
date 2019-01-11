@@ -58,20 +58,15 @@ describe("SelectBranch", () => {
     const { wrapper, getByText } = render(SelectBranch);
 
     const item1Name = wrapper.vm.companiesFromServer[0].name;
-    // const item3Name = wrapper.vm.companies[2].name;
     const item1 = getByText(item1Name);
-    // const item2 = getByText(item2Name);
 
     await fireEvent.click(item1);
 
     const activeItem = wrapper.find(".active");
     expect(activeItem.text()).toContain("Empresa Alpha");
 
-    // await fireEvent.click(item3);
-
     // const activeItem3 = wrapper.find(".active");
     // expect(activeItem3.text()).toContain("Almacén Sonora Grill");
-
     // await fireEvent.click(item2);
 
     // const activeItem2 = wrapper.find(".active");

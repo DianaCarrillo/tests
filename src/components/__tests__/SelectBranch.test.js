@@ -3,12 +3,14 @@
 import { createLocalVue, mount } from "@vue/test-utils";
 import {
   getQueriesForElement,
-  prettyDOM,
-  fireEvent
+  prettyDOM
+  // fireEvent
 } from "dom-testing-library";
 
 import SelectBranch from "../Diana/SelectBranch.vue";
-import BranchesListItem from "../Diana/BranchesListItem.vue";
+import BranchesList from "../Diana/BranchesList.vue";
+import CompanyList from "../Diana/CompanyList.vue";
+// import CompanyListItem from "../Diana/CompanyListItem.vue";
 
 function render(component, options) {
   const localVue = createLocalVue();
@@ -19,30 +21,14 @@ function render(component, options) {
   });
 
   return {
-    // puedes extrar propiedades de un objectos devueve todas las opciones para que laspuedas extraer fácilmente
     wrapper,
     ...getQueriesForElement(wrapper.element),
     debug: () => console.log(prettyDOM(wrapper.element))
   };
 }
 
-describe("BranchesListItem", () => {
-  it("Renders Branches column correcly", () => {
-    const { wrapper, getByText } = render(BranchesListItem);
-
-    wrapper.vm.handleCompanySelect(wrapper.vm.companiesFromServer[0]);
-    expect(wrapper.find("button").classes("is-hidden")).toBe(true);
-    // // Encontrar la clase isHidden. is hidden está después de un click
-    // const companyName = wrapper.vm.companiesFromServer[0].name;
-    // const textCompany = getByText(companyName);
-    // await fireEvent.click(textCompany);
-    // const isHidden = wrapper.find(".is-hidden");
-    // expect(isHidden).toBe(true);
-  });
-});
-
 describe("SelectBranch", () => {
-  it("It always has TWO and only TWO active company", () => {
+  it("It always has only two active companies", () => {
     const { wrapper } = render(SelectBranch);
 
     let trueCount = 0;
@@ -54,22 +40,78 @@ describe("SelectBranch", () => {
     expect(trueCount).toEqual(2);
   });
 
-  it("it highlights the currently selected item", async () => {
-    const { wrapper, getByText } = render(SelectBranch);
+  it("It has two component children", () => {
+    const { wrapper } = render(SelectBranch);
+    const children = wrapper.vm.$children;
+    expect(children.length).toBe(2);
 
-    const item1Name = wrapper.vm.companiesFromServer[0].name;
-    const item1 = getByText(item1Name);
-
-    await fireEvent.click(item1);
-
-    const activeItem = wrapper.find(".active");
-    expect(activeItem.text()).toContain("Empresa Alpha");
-
-    // const activeItem3 = wrapper.find(".active");
-    // expect(activeItem3.text()).toContain("Almacén Sonora Grill");
-    // await fireEvent.click(item2);
-
-    // const activeItem2 = wrapper.find(".active");
-    // expect(activeItem2.text()).toContain("Beta");
+    expect(wrapper.find(CompanyList).exists()).toBe(true);
+    expect(wrapper.find(BranchesList).exists()).toBe(true);
   });
+
+  // it("Highlights the currently selected item");
 });
+
+describe("BranchesList", () => {
+  it("It renders braches column correctly", async () => {
+    const { wrapper } = render(BranchesList, {
+      propsData: {
+        isHidden: true,
+        companiesFromServer: [
+          {
+            name: "Empresa Alpha",
+            taxId: "1234567890",
+            active: true,
+            branches: [
+              {
+                name: "Almacén de la Ciudad de México y EDOMEX",
+                key: "12408416",
+                active: true,
+                type: "Almacén",
+                icon: "icon warehouses"
+              }
+            ]
+          }
+        ]
+      }
+    });
+
+    const div = wrapper.findAll("div").at(0);
+    expect(div.classes()).toContain("is-hidden");
+    // Cómo le hago para testear el evento click si está en otro componente
+  });
+  // it("It renders braches column correctly", async () => {
+  //   const { wrapper } = render(CompanyListItem, {
+  //     propsData: {}
+  //   });
+  // });
+});
+
+// it("it highlights the currently selected item", async () => {
+//   const { wrapper, getByText } = render(SelectBranch);
+
+//   const item1Name = wrapper.vm.companiesFromServer[0].name;
+//   const item1 = getByText(item1Name);
+
+//   await fireEvent.click(item1);
+
+//   const activeItem = wrapper.find(".active");
+//   expect(activeItem.text()).toContain("Empresa Alpha");
+
+// const activeItem3 = wrapper.find(".active");
+// expect(activeItem3.text()).toContain("Almacén Sonora Grill");
+// await fireEvent.click(item2);
+
+// const activeItem2 = wrapper.find(".active");
+// expect(activeItem2.text()).toContain("Beta");
+// });
+
+// describe("BranchesListItem", () => {
+//   it("Renders Branches column correcly", () => {
+//     const wrapper = mount(BranchesListItem);
+//     const buttonsArray = wrapper.findAll("button");
+//     expect(buttonsArray.contains("p")).toBe(true);
+// wrapper.vm.handleCompanySelect(wrapper.vm.companiesFromServer[0]);
+// expect(wrapper.find("button").classes("select-item")).toBe(true);
+// });
+// });

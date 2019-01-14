@@ -11,7 +11,7 @@ import {
 import SelectBranch from "../Diana/SelectBranch.vue";
 import BranchesList from "../Diana/BranchesList.vue";
 import CompanyList from "../Diana/CompanyList.vue";
-// import CompanyListItem from "../Diana/CompanyListItem.vue";
+import BranchesListItem from "../Diana/BranchesListItem.vue";
 
 function render(component, options) {
   const localVue = createLocalVue();
@@ -41,61 +41,6 @@ describe("SelectBranch", () => {
     expect(trueCount).toEqual(2);
   });
 
-  it("has one non-active company", () => {
-    const { wrapper } = render(SelectBranch);
-    let nonActive;
-    if (wrapper.vm.companiesFromServer.active === false) {
-      nonActive++;
-    }
-    // for (let j = 0; j < wrapper.vm.companiesFromServer.length; j++) {
-    //   if (!wrapper.vm.companiesFromServer[j].active) {
-    //     nonActive++;
-    //   }
-    // }
-    expect(nonActive).toEqual(1);
-    const disabled = wrapper.findAll("button:disabled");
-    expect(disabled.length).toEqual(nonActive);
-  });
-
-  it("It has two component children", () => {
-    const { wrapper } = render(SelectBranch);
-    const children = wrapper.vm.$children;
-    expect(children.length).toBe(2);
-
-    expect(wrapper.find(CompanyList).exists()).toBe(true);
-    expect(wrapper.find(BranchesList).exists()).toBe(true);
-  });
-  // it("Highlights the currently selected item");
-});
-
-describe("BranchesList", () => {
-  it("Hides the BranchList component", async () => {
-    const { wrapper } = render(BranchesList, {
-      propsData: {
-        isHidden: true,
-        companiesFromServer: [
-          {
-            name: "Empresa Alpha",
-            taxId: "1234567890",
-            active: true,
-            branches: [
-              {
-                name: "Almacén de la Ciudad de México y EDOMEX",
-                key: "12408416",
-                active: true,
-                type: "Almacén",
-                icon: "icon warehouses"
-              }
-            ]
-          }
-        ]
-      }
-    });
-
-    const div = wrapper.findAll("div").at(0);
-    expect(div.classes()).toContain("is-hidden");
-  });
-
   it("It renders braches column correctly", async () => {
     const { wrapper, getByText } = render(SelectBranch);
     const company = wrapper.vm.companiesFromServer[0].name;
@@ -104,5 +49,85 @@ describe("BranchesList", () => {
     await fireEvent.click(companyName);
     const div = wrapper.findAll("div").at(0);
     expect(div.classes("is-hidden")).toBe(false);
+  });
+
+  it("has one non-active company", () => {
+    const { wrapper } = render(SelectBranch);
+    let nonActive = 0;
+    wrapper.vm.companiesFromServer.forEach(function(company) {
+      if (company.active == false) {
+        nonActive++;
+      }
+    });
+    expect(nonActive).toEqual(1);
+  });
+  it("It has two component children", () => {
+    const { wrapper } = render(SelectBranch);
+    const children = wrapper.vm.$children;
+    expect(children.length).toBe(2);
+
+    expect(wrapper.find(CompanyList).exists()).toBe(true);
+    expect(wrapper.find(BranchesList).exists()).toBe(true);
+  });
+
+  // it("Highlights the currently selected item");
+});
+
+describe("BranchesList", () => {
+  const { wrapper } = render(BranchesList, {
+    propsData: {
+      isHidden: true,
+      companiesFromServer: [
+        {
+          name: "Empresa Alpha",
+          taxId: "1234567890",
+          active: true,
+          branches: [
+            {
+              name: "Almacén de la Ciudad de México y EDOMEX",
+              key: "12408416",
+              active: true,
+              type: "Almacén",
+              icon: "icon warehouses"
+            }
+          ]
+        }
+      ]
+    }
+  });
+  it("Hides the BranchList component", async () => {
+    const div = wrapper.findAll("div").at(0);
+    expect(div.classes()).toContain("is-hidden");
+  });
+  it("returns the information for 'Almacén", () => {
+    expect(wrapper.text()).toBe(
+      "Almacenes Almacén de la Ciudad de México y EDOMEX RFC: 12408416    Oficinas    Tiendas"
+    );
+  });
+
+  it("has select-title and column classes", () => {
+    const div = wrapper.findAll("div").at(0);
+    expect(div.classes("column")).toBe(true);
+    const secondDiv = wrapper.findAll("div").at(1);
+    expect(secondDiv.classes("select-title")).toBe(true);
+  });
+});
+
+describe("BranchesListItem", () => {
+  it("Disables the elements", () => {
+    const { wrapper } = render(BranchesListItem, {
+      propsData: {
+        branch: {
+          active: true,
+          icon: "icon warehouses",
+          key: "12408416",
+          name: "Almacén de la Ciudad de México y EDOMEX",
+          type: "Almacén"
+        }
+      }
+    });
+    const button = wrapper.findAll("button").at(0);
+    // no estoy agarrando el atributo disabled whhhyyyyyy
+    expect(button.attributes()).toBe("disabled");
   });
 });

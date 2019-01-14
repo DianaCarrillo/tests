@@ -120,6 +120,8 @@ export default {
       this.addActiveClass(active, id);
     },
     addActiveClass(active, id) {
+      // const button = document.getElementsByTagName("button");
+      // console.log(button);
       // Lo estoy poniendo cada que handlecompanySelect se ativa, active se convierte en una class del button
       if (active == true && id === "1234567890") {
         return (this.activeClass = !this.activeClass);

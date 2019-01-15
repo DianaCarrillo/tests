@@ -12,7 +12,7 @@ import SelectBranch from "../Diana/SelectBranch.vue";
 import BranchesList from "../Diana/BranchesList.vue";
 import CompanyList from "../Diana/CompanyList.vue";
 import BranchesListItem from "../Diana/BranchesListItem.vue";
-
+import CompanyListItem from "../Diana/CompanyListItem.vue";
 function render(component, options) {
   const localVue = createLocalVue();
   const wrapper = mount(component, {
@@ -51,15 +51,15 @@ describe("SelectBranch", () => {
     expect(div.classes("is-hidden")).toBe(false);
   });
 
-  it("has one non-active company", () => {
+  it("has one inactive company", () => {
     const { wrapper } = render(SelectBranch);
-    let nonActive = 0;
+    let inactive = 0;
     wrapper.vm.companiesFromServer.forEach(function(company) {
       if (company.active == false) {
-        nonActive++;
+        inactive++;
       }
     });
-    expect(nonActive).toEqual(1);
+    expect(inactive).toEqual(1);
   });
   it("It has two component children", () => {
     const { wrapper } = render(SelectBranch);
@@ -69,8 +69,6 @@ describe("SelectBranch", () => {
     expect(wrapper.find(CompanyList).exists()).toBe(true);
     expect(wrapper.find(BranchesList).exists()).toBe(true);
   });
-
-  // it("Highlights the currently selected item");
 });
 
 describe("BranchesList", () => {
@@ -115,20 +113,34 @@ describe("BranchesList", () => {
   });
 });
 
+// describe("CompanyList", () => {
+//   it("has CompanyListItem as a child", () => {
+//     const { wrapper } = render(CompanyList, {
+//       propsData: {
+//         handleCompanySelect,
+//         companiesFromServer,
+//         addActiveClass,
+//         activeClass: true
+//       }
+//     });
+//     const children = wrapper.vm.$children;
+//     expect(children.length).toBe(1);
+//     expect(wrapper.find(CompanyListItem).exists()).toBe(true);
+//   });
+// });
+
 describe("BranchesListItem", () => {
-  it("Disables the elements", () => {
-    const { wrapper } = render(BranchesListItem, {
-      propsData: {
-        branch: {
-          active: false,
-          key: "90078434",
-          name: "Almacén Sonora Grill",
-          type: "Almacén"
-        }
+  const { wrapper } = render(BranchesListItem, {
+    propsData: {
+      branch: {
+        active: false,
+        key: "90078434",
+        name: "Almacén Sonora Grill",
+        type: "Almacén"
       }
-    });
-    // const button = wrapper.findAll("button").at(0);
-    // expect(button.props("disabled")).toBe("");
+    }
+  });
+  it("Disables the elements", () => {
     expect(wrapper.html()).toBe(
       `<div class="item"><button disabled="disabled" class="select-item"><div class="info"><p>
         Almacén Sonora Grill
@@ -137,6 +149,15 @@ describe("BranchesListItem", () => {
           <strong>permiso</strong> para modificar esta empresa.
         </p> <p class="popover_message"><span>Solicítalo</span> <a href="#" class="requestbranch">aquí</a> <span>.</span></p></div></div></button></div>`
     );
-    // expect(wrapper.vm.find("button").props()["disabled"]).toBe(true);
+  });
+  it("Disables the elements", () => {
+    const button = wrapper
+      .findAll("button")
+      .at(0)
+      .html()
+      .includes('disabled="disabled"');
+    expect(button).toBe(true);
   });
 });
+
+// it("Highlights the currently selected item");

@@ -101,7 +101,9 @@ describe("BranchesList", () => {
   });
   it("returns the information for 'Almacén", () => {
     expect(wrapper.text()).toBe(
-      "Almacenes Almacén de la Ciudad de México y EDOMEX RFC: 12408416    Oficinas    Tiendas"
+      `Almacenes 
+        Almacén de la Ciudad de México y EDOMEX
+          RFC: 12408416    Oficinas    Tiendas`
     );
   });
 
@@ -118,16 +120,23 @@ describe("BranchesListItem", () => {
     const { wrapper } = render(BranchesListItem, {
       propsData: {
         branch: {
-          active: true,
-          icon: "icon warehouses",
-          key: "12408416",
-          name: "Almacén de la Ciudad de México y EDOMEX",
+          active: false,
+          key: "90078434",
+          name: "Almacén Sonora Grill",
           type: "Almacén"
         }
       }
     });
-    const button = wrapper.findAll("button").at(0);
-    // no estoy agarrando el atributo disabled whhhyyyyyy
-    expect(button.attributes()).toBe("disabled");
+    // const button = wrapper.findAll("button").at(0);
+    // expect(button.props("disabled")).toBe("");
+    expect(wrapper.html()).toBe(
+      `<div class="item"><button disabled="disabled" class="select-item"><div class="info"><p>
+        Almacén Sonora Grill
+        <span class=""></span> <i class="fas fa-lock"></i> <span>RFC: 90078434</span></p></div> <div class="popover_wrapper"><a class="fas fa-question-circle"></a> <div class="push popover_content up"><p class="popover_message">
+          No tienes
+          <strong>permiso</strong> para modificar esta empresa.
+        </p> <p class="popover_message"><span>Solicítalo</span> <a href="#" class="requestbranch">aquí</a> <span>.</span></p></div></div></button></div>`
+    );
+    // expect(wrapper.vm.find("button").props()["disabled"]).toBe(true);
   });
 });
